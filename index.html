@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="EEEP Paulo VI — Escola Estadual de Educação Profissional do Ceará. Ensino médio integrado à formação técnica de qualidade." />
+  <title>EEEP Paulo VI — Educação Profissional do Ceará</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+
+  <style>
+    /* ========================================
+       CSS RESET & VARIABLES
+    ======================================== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Paleta EEEP / SEDUC Ceará */
+      --verde-primario: #00843D;
+      --verde-escuro: #005C2A;
+      --verde-claro: #4CAF50;
+      --verde-bg: #E8F5E9;
+
+      --laranja-primario: #F58220;
+      --laranja-escuro: #E06D10;
+      --laranja-claro: #FFB74D;
+      --laranja-bg: #FFF3E0;
+
+      --azul-institucional: #1565C0;
+      --azul-escuro: #0D47A1;
+      --azul-claro: #42A5F5;
+
+      --branco: #FFFFFF;
+      --cinza-50: #FAFAFA;
+      --cinza-100: #F5F5F5;
+      --cinza-200: #EEEEEE;
+      --cinza-300: #E0E0E0;
+      --cinza-500: #9E9E9E;
+      --cinza-700: #616161;
+      --cinza-800: #424242;
+      --cinza-900: #212121;
+
+      --sombra-sm: 0 1px 3px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .06);
+      --sombra-md: 0 4px 6px rgba(0, 0, 0, .07), 0 2px 4px rgba(0, 0, 0, .06);
+      --sombra-lg: 0 10px 25px rgba(0, 0, 0, .1), 0 4px 10px rgba(0, 0, 0, .05);
+      --sombra-xl: 0 20px 40px rgba(0, 0, 0, .12);
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --font-titulo: 'Poppins', 'Inter', sans-serif;
+      --font-corpo: 'Source Sans 3', 'Inter', sans-serif;
+
+      --transicao: .3s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-corpo);
+      color: var(--cinza-900);
+      background: var(--branco);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transicao);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Acessibilidade — foco visível */
+    :focus-visible {
+      outline: 3px solid var(--laranja-primario);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Classe sr-only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ========================================
+       BOTÕES
+    ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-family: var(--font-titulo);
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: var(--radius-full);
+      transition: var(--transicao);
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+
+    .btn-primario {
+      background: var(--verde-primario);
+      color: var(--branco);
+      box-shadow: 0 4px 14px rgba(0, 132, 61, .35);
+    }
+
+    .btn-primario:hover {
+      background: var(--verde-escuro);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 132, 61, .45);
+    }
+
+    .btn-laranja {
+      background: var(--laranja-primario);
+      color: var(--branco);
+      box-shadow: 0 4px 14px rgba(245, 130, 32, .35);
+    }
+
+    .btn-laranja:hover {
+      background: var(--laranja-escuro);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 130, 32, .45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--branco);
+      border: 2px solid var(--branco);
+    }
+
+    .btn-outline:hover {
+      background: var(--branco);
+      color: var(--verde-primario);
+    }
+
+    .btn-outline-verde {
+      background: transparent;
+      color: var(--verde-primario);
+      border: 2px solid var(--verde-primario);
+    }
+
+    .btn-outline-verde:hover {
+      background: var(--verde-primario);
+      color: var(--branco);
+    }
+
+    /* Tags / Badges */
+    .tag {
+      display: inline-block;
+      padding: 5px 14px;
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border-radius: var(--radius-full);
+    }
+
+    .tag-verde {
+      background: var(--verde-bg);
+      color: var(--verde-primario);
+    }
+
+    .tag-laranja {
+      background: var(--laranja-bg);
+      color: var(--laranja-primario);
+    }
+
+    /* Títulos de Seção */
+    .secao-titulo {
+      font-family: var(--font-titulo);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      color: var(--cinza-900);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .secao-subtitulo {
+      font-size: 1.1rem;
+      color: var(--cinza-700);
+      max-width: 680px;
+      line-height: 1.7;
+    }
+
+    .secao-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .secao-header .secao-subtitulo {
+      margin: 0 auto;
+    }
+
+    /* ========================================
+       HEADER / NAVEGAÇÃO
+    ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cinza-200);
+      transition: var(--transicao);
+    }
+
+    .header.scrolled {
+      box-shadow: var(--sombra-md);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--verde-primario), var(--verde-claro));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--branco);
+      font-size: 1.3rem;
+      font-weight: 800;
+      font-family: var(--font-titulo);
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-text strong {
+      font-family: var(--font-titulo);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--verde-primario);
+    }
+
+    .logo-text small {
+      font-size: .7rem;
+      color: var(--cinza-500);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-desktop a {
+      font-size: .92rem;
+      font-weight: 500;
+      color: var(--cinza-700);
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-desktop a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--verde-primario);
+      border-radius: 2px;
+      transition: var(--transicao);
+    }
+
+    .nav-desktop a:hover {
+      color: var(--verde-primario);
+    }
+
+    .nav-desktop a:hover::after {
+      width: 100%;
+    }
+
+    .header-cta {
+      padding: 10px 24px;
+      font-size: .88rem;
+    }
+
+    /* Hambúrguer mobile */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      z-index: 1010;
+    }
+
+    .menu-toggle span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--cinza-800);
+      border-radius: 2px;
+      transition: var(--transicao);
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Nav mobile overlay */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(255, 255, 255, .98);
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      z-index: 1005;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+    }
+
+    .nav-mobile.open {
+      display: flex;
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .nav-mobile a {
+      font-family: var(--font-titulo);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--cinza-800);
+    }
+
+    .nav-mobile a:hover {
+      color: var(--verde-primario);
+    }
+
+    /* ========================================
+       BLOCO 1 — HERO
+    ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(155deg, var(--verde-escuro) 0%, var(--verde-primario) 50%, #2E7D32 100%);
+      padding-top: 72px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(245, 130, 32, .15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(21, 101, 192, .1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: var(--branco);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 60px 0 100px;
+    }
+
+    .hero-content {
+      color: var(--branco);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(8px);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, .2);
+    }
+
+    .hero h1 {
+      font-family: var(--font-titulo);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .destaque {
+      color: var(--laranja-primario);
+      position: relative;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      opacity: .92;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .hero-botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-imagem {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--sombra-xl);
+    }
+
+    .hero-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .05));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: rgba(255, 255, 255, .7);
+      font-size: .9rem;
+    }
+
+    .hero-img-placeholder i {
+      font-size: 3rem;
+      opacity: .5;
+    }
+
+    /* Floating stats cards */
+    .hero-stat {
+      position: absolute;
+      background: var(--branco);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      box-shadow: var(--sombra-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 3;
+    }
+
+    .hero-stat-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .hero-stat-text strong {
+      display: block;
+      font-family: var(--font-titulo);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--cinza-900);
+      line-height: 1.2;
+    }
+
+    .hero-stat-text span {
+      font-size: .78rem;
+      color: var(--cinza-500);
+    }
+
+    .hero-stat-1 {
+      bottom: 20%;
+      left: -30px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero-stat-2 {
+      top: 15%;
+      right: -20px;
+      animation: float 6s ease-in-out infinite 2s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ========================================
+       BLOCO 2 — A ESCOLA
+    ======================================== */
+    .escola {
+      padding: 100px 0;
+      background: var(--branco);
+    }
+
+    .escola-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .escola-imagem {
+      position: relative;
+    }
+
+    .escola-img-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--sombra-lg);
+      aspect-ratio: 4/3;
+      background: var(--cinza-100);
+    }
+
+    .escola-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--cinza-500);
+      font-size: .9rem;
+      min-height: 320px;
+    }
+
+    .escola-img-placeholder i {
+      font-size: 3rem;
+      opacity: .4;
+    }
+
+    .escola-detalhe {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--laranja-primario), var(--laranja-claro));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--branco);
+      box-shadow: var(--sombra-md);
+    }
+
+    .escola-detalhe strong {
+      font-family: var(--font-titulo);
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .escola-detalhe span {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      opacity: .9;
+    }
+
+    .escola-texto .tag {
+      margin-bottom: 16px;
+    }
+
+    .escola-texto .secao-titulo {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .escola-texto p {
+      color: var(--cinza-700);
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .escola-lista {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .escola-lista li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .95rem;
+      color: var(--cinza-800);
+      font-weight: 500;
+    }
+
+    .escola-lista li i {
+      color: var(--verde-primario);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* ========================================
+       BLOCO 3 — CURSOS
+    ======================================== */
+    .cursos {
+      padding: 100px 0;
+      background: var(--cinza-50);
+    }
+
+    .cursos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .curso-card {
+      background: var(--branco);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--sombra-sm);
+      transition: var(--transicao);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .curso-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sombra-lg);
+    }
+
+    .curso-card-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--cinza-200);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .curso-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .curso-card-img .placeholder-img {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--cinza-500);
+      font-size: .8rem;
+    }
+
+    .curso-card-img .placeholder-img i {
+      font-size: 2rem;
+      opacity: .4;
+    }
+
+    .curso-card-img .curso-tag-overlay {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+    }
+
+    .curso-card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .curso-card-body h3 {
+      font-family: var(--font-titulo);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--cinza-900);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .curso-card-body p {
+      font-size: .93rem;
+      color: var(--cinza-700);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .curso-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--cinza-200);
+      font-size: .82rem;
+      color: var(--cinza-500);
+    }
+
+    .curso-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .curso-meta i {
+      font-size: .95rem;
+      color: var(--verde-primario);
+    }
+
+    /* ========================================
+       BLOCO 4 — DIFERENCIAIS
+    ======================================== */
+    .diferenciais {
+      padding: 100px 0;
+      background: var(--branco);
+    }
+
+    .diferenciais-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .diferencial-card {
+      background: var(--cinza-50);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transicao);
+      border: 1px solid transparent;
+    }
+
+    .diferencial-card:hover {
+      border-color: var(--verde-primario);
+      background: var(--verde-bg);
+      transform: translateY(-4px);
+      box-shadow: var(--sombra-md);
+    }
+
+    .diferencial-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--verde-bg), rgba(0, 132, 61, .12));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.5rem;
+      color: var(--verde-primario);
+      transition: var(--transicao);
+    }
+
+    .diferencial-card:hover .diferencial-icon {
+      background: var(--verde-primario);
+      color: var(--branco);
+    }
+
+    .diferencial-card h3 {
+      font-family: var(--font-titulo);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--cinza-900);
+    }
+
+    .diferencial-card p {
+      font-size: .88rem;
+      color: var(--cinza-700);
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       BLOCO 5 — DEPOIMENTOS
+    ======================================== */
+    .depoimentos {
+      padding: 100px 0;
+      background: linear-gradient(170deg, var(--verde-escuro) 0%, var(--verde-primario) 100%);
+      color: var(--branco);
+    }
+
+    .depoimentos .secao-titulo {
+      color: var(--branco);
+    }
+
+    .depoimentos .secao-subtitulo {
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .depoimentos .tag {
+      background: rgba(255, 255, 255, .15);
+      color: var(--branco);
+    }
+
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .depoimento-card {
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: var(--transicao);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .depoimento-card:hover {
+      background: rgba(255, 255, 255, .18);
+      transform: translateY(-4px);
+    }
+
+    .depoimento-aspas {
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--laranja-primario);
+      margin-bottom: 12px;
+      font-family: Georgia, serif;
+    }
+
+    .depoimento-card blockquote {
+      font-size: .96rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, .92);
+      font-style: italic;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+
+    .depoimento-autor {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .depoimento-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .depoimento-autor-info strong {
+      display: block;
+      font-size: .92rem;
+      font-weight: 600;
+    }
+
+    .depoimento-autor-info span {
+      font-size: .78rem;
+      opacity: .7;
+    }
+
+    /* ========================================
+       BLOCO 6 — CTA
+    ======================================== */
+    .cta-secao {
+      padding: 80px 0;
+      background: var(--laranja-bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-secao::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -15%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 130, 32, .1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-inner .secao-titulo {
+      margin-bottom: 16px;
+    }
+
+    .cta-inner p {
+      font-size: 1.1rem;
+      color: var(--cinza-700);
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .cta-botoes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ========================================
+       BLOCO 7 — FOOTER
+    ======================================== */
+    .footer {
+      background: var(--cinza-900);
+      color: rgba(255, 255, 255, .8);
+      padding: 64px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .footer-brand .logo-text strong {
+      color: var(--branco);
+    }
+
+    .footer-brand .logo-text small {
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .footer-brand>p {
+      margin-top: 16px;
+      font-size: .92rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .6);
+      max-width: 300px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, .7);
+      font-size: 1.1rem;
+      transition: var(--transicao);
+    }
+
+    .footer-social a:hover {
+      background: var(--verde-primario);
+      color: var(--branco);
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-titulo);
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--branco);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--laranja-primario);
+      padding-left: 4px;
+    }
+
+    .footer-contato li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .footer-contato li i {
+      color: var(--verde-claro);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 24px 0;
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .footer-bottom a {
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .footer-bottom a:hover {
+      color: var(--laranja-primario);
+    }
+
+    /* ========================================
+       CTA FIXO MOBILE
+    ======================================== */
+    .cta-fixo-mobile {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--branco);
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, .12);
+      z-index: 900;
+    }
+
+    .cta-fixo-mobile .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ========================================
+       RESPONSIVIDADE
+    ======================================== */
+    @media (max-width: 1024px) {
+      .diferenciais-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .nav-desktop,
+      .header-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+        padding: 40px 0 80px;
+      }
+
+      .hero p {
+        margin: 0 auto 32px;
+      }
+
+      .hero-botoes {
+        justify-content: center;
+      }
+
+      .hero-imagem {
+        order: -1;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .hero-stat {
+        display: none;
+      }
+
+      .escola-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .escola-lista {
+        grid-template-columns: 1fr;
+      }
+
+      .escola-detalhe {
+        bottom: -16px;
+        right: 10px;
+        width: 80px;
+        height: 80px;
+      }
+
+      .escola-detalhe strong {
+        font-size: 1.4rem;
+      }
+
+      .cursos-grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+
+      .diferenciais-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .depoimentos-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cta-fixo-mobile {
+        display: block;
+      }
+
+      body {
+        padding-bottom: 70px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero-botoes {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        padding: 12px 28px;
+        font-size: .92rem;
+      }
+    }
+
+    /* ========================================
+       ANIMAÇÕES SCROLL (IntersectionObserver)
+    ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ====== HEADER ====== -->
+  <header class="header" id="header" role="banner">
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="EEEP Paulo VI — Página inicial">
+        <div class="logo-icon" aria-hidden="true">PVI</div>
+        <div class="logo-text">
+          <strong>EEEP Paulo VI</strong>
+          <small>Educação Profissional — Ceará</small>
+        </div>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Menu principal">
+        <a href="#escola">A Escola</a>
+        <a href="#cursos">Cursos</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a href="#cta" class="btn btn-primario header-cta">Inscreva-se</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="nav-mobile" id="navMobile" aria-label="Menu principal mobile">
+      <a href="#escola" class="nav-mobile-link">A Escola</a>
+      <a href="#cursos" class="nav-mobile-link">Cursos</a>
+      <a href="#diferenciais" class="nav-mobile-link">Diferenciais</a>
+      <a href="#depoimentos" class="nav-mobile-link">Depoimentos</a>
+      <a href="#contato" class="nav-mobile-link">Contato</a>
+      <a href="#cta" class="btn btn-primario">Inscreva-se</a>
+    </nav>
+  </header>
+
+  <!-- ====== BLOCO 1 — HERO ====== -->
+  <section class="hero" id="inicio">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="ph ph-graduation-cap"></i>
+          Escola Profissional do Ceará
+        </div>
+        <h1>Transforme seu futuro com <span class="destaque">educação profissional</span> de excelência</h1>
+        <p>A EEEP Paulo VI integra ensino médio e formação técnica, preparando jovens cearenses para o mercado de
+          trabalho com infraestrutura moderna, professores dedicados e oportunidades reais de crescimento.</p>
+        <div class="hero-botoes">
+          <a href="#cursos" class="btn btn-laranja">
+            <i class="ph ph-book-open-text"></i>
+            Conheça os Cursos
+          </a>
+          <a href="#escola" class="btn btn-outline">
+            <i class="ph ph-play-circle"></i>
+            Saiba Mais
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-imagem">
+        <div class="hero-img-wrapper">
+          <div class="hero-img-placeholder" role="img" aria-label="Estudantes da EEEP Paulo VI em atividade prática">
+            <i class="ph ph-image"></i>
+            <span>Imagem: Estudantes em laboratório</span>
+          </div>
+          <!-- Substituir por: <img src="hero.webp" alt="Estudantes da EEEP Paulo VI em atividade prática" loading="eager" /> -->
+        </div>
+
+        <div class="hero-stat hero-stat-1">
+          <div class="hero-stat-icon" style="background: var(--verde-bg); color: var(--verde-primario);">
+            <i class="ph-fill ph-student"></i>
+          </div>
+          <div class="hero-stat-text">
+            <strong>+1200</strong>
+            <span>Alunos formados</span>
+          </div>
+        </div>
+        <div class="hero-stat hero-stat-2">
+          <div class="hero-stat-icon" style="background: var(--laranja-bg); color: var(--laranja-primario);">
+            <i class="ph-fill ph-trophy"></i>
+          </div>
+          <div class="hero-stat-text">
+            <strong>96%</strong>
+            <span>Aprovação ENEM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BLOCO 2 — A ESCOLA ====== -->
+  <section class="escola" id="escola">
+    <div class="container escola-grid reveal">
+      <div class="escola-imagem">
+        <div class="escola-img-wrapper">
+          <div class="escola-img-placeholder" role="img" aria-label="Fachada da EEEP Paulo VI">
+            <i class="ph ph-buildings"></i>
+            <span>Imagem: Fachada da escola</span>
+          </div>
+          <!-- Substituir por: <img src="escola.webp" alt="Fachada da EEEP Paulo VI" loading="lazy" /> -->
+        </div>
+        <div class="escola-detalhe">
+          <strong>10+</strong>
+          <span>Anos de<br>história</span>
+        </div>
+      </div>
+
+      <div class="escola-texto">
+        <span class="tag tag-verde">Sobre Nós</span>
+        <h2 class="secao-titulo">Uma escola que transforma vidas no Ceará</h2>
+        <p>A EEEP Paulo VI é uma das Escolas Estaduais de Educação Profissional do Ceará, vinculada à SEDUC-CE. Desde
+          sua fundação, oferece ensino médio integrado a cursos técnicos de alta relevância para o mercado regional e
+          nacional.</p>
+        <p>Com uma proposta pedagógica que alia teoria à prática, nossos estudantes vivenciam experiências reais de
+          aprendizado em laboratórios equipados, estágios supervisionados e projetos interdisciplinares que estimulam
+          protagonismo e criatividade.</p>
+
+        <ul class="escola-lista">
+          <li><i class="ph-fill ph-check-circle"></i> Ensino integral e integrado</li>
+          <li><i class="ph-fill ph-check-circle"></i> Laboratórios modernos</li>
+          <li><i class="ph-fill ph-check-circle"></i> Estágio supervisionado</li>
+          <li><i class="ph-fill ph-check-circle"></i> Professores especializados</li>
+          <li><i class="ph-fill ph-check-circle"></i> Projetos interdisciplinares</li>
+          <li><i class="ph-fill ph-check-circle"></i> Parceria com empresas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BLOCO 3 — CURSOS ====== -->
+  <section class="cursos" id="cursos">
+    <div class="container">
+      <div class="secao-header reveal">
+        <span class="tag tag-verde">Formação Técnica</span>
+        <h2 class="secao-titulo">Nossos Cursos Técnicos</h2>
+        <p class="secao-subtitulo">Cursos integrados ao ensino médio, com carga horária robusta, estágio obrigatório e
+          certificação reconhecida em todo o território nacional.</p>
+      </div>
+
+      <div class="cursos-grid">
+        <!-- Curso 1 -->
+        <article class="curso-card reveal" aria-label="Curso Técnico em Informática">
+          <div class="curso-card-img">
+            <div class="placeholder-img" role="img" aria-label="Alunos em aula de programação">
+              <i class="ph ph-desktop-tower"></i>
+              <span>Informática</span>
+            </div>
+            <span class="tag tag-verde curso-tag-overlay">Tecnologia</span>
+          </div>
+          <div class="curso-card-body">
+            <h3>Técnico em Informática</h3>
+            <p>Desenvolvimento de software, redes de computadores, banco de dados e manutenção de sistemas. Os alunos
+              aprendem linguagens de programação modernas e trabalham em projetos reais desde o segundo ano.</p>
+            <div class="curso-meta">
+              <span><i class="ph ph-clock"></i> 3 anos</span>
+              <span><i class="ph ph-certificate"></i> Certificação MEC</span>
+              <span><i class="ph ph-briefcase"></i> Estágio</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Curso 2 -->
+        <article class="curso-card reveal" aria-label="Curso Técnico em Enfermagem">
+          <div class="curso-card-img">
+            <div class="placeholder-img" role="img" aria-label="Estudantes em prática de enfermagem">
+              <i class="ph ph-first-aid-kit"></i>
+              <span>Enfermagem</span>
+            </div>
+            <span class="tag tag-laranja curso-tag-overlay">Saúde</span>
+          </div>
+          <div class="curso-card-body">
+            <h3>Técnico em Enfermagem</h3>
+            <p>Formação completa em cuidados de saúde, procedimentos clínicos, farmacologia e ética profissional.
+              Estágio em unidades de saúde parceiras garante vivência prática supervisionada com profissionais atuantes.
+            </p>
+            <div class="curso-meta">
+              <span><i class="ph ph-clock"></i> 3 anos</span>
+              <span><i class="ph ph-certificate"></i> Certificação MEC</span>
+              <span><i class="ph ph-briefcase"></i> Estágio</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Curso 3 -->
+        <article class="curso-card reveal" aria-label="Curso Técnico em Administração">
+          <div class="curso-card-img">
+            <div class="placeholder-img" role="img" aria-label="Jovens em simulação empresarial">
+              <i class="ph ph-chart-line-up"></i>
+              <span>Administração</span>
+            </div>
+            <span class="tag tag-verde curso-tag-overlay">Gestão</span>
+          </div>
+          <div class="curso-card-body">
+            <h3>Técnico em Administração</h3>
+            <p>Gestão financeira, recursos humanos, logística e empreendedorismo. Os estudantes desenvolvem planos de
+              negócios, participam de feiras empreendedoras e aprendem ferramentas de gestão utilizadas pelo mercado.
+            </p>
+            <div class="curso-meta">
+              <span><i class="ph ph-clock"></i> 3 anos</span>
+              <span><i class="ph ph-certificate"></i> Certificação MEC</span>
+              <span><i class="ph ph-briefcase"></i> Estágio</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BLOCO 4 — DIFERENCIAIS ====== -->
+  <section class="diferenciais" id="diferenciais">
+    <div class="container">
+      <div class="secao-header reveal">
+        <span class="tag tag-laranja">Por que a Paulo VI?</span>
+        <h2 class="secao-titulo">Diferenciais e Inovação</h2>
+        <p class="secao-subtitulo">Estrutura, metodologia e compromisso que fazem da nossa escola referência em educação
+          profissional no estado do Ceará.</p>
+      </div>
+
+      <div class="diferenciais-grid">
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-flask"></i>
+          </div>
+          <h3>Laboratórios Equipados</h3>
+          <p>Espaços modernos com tecnologia atualizada para prática em informática, enfermagem e gestão empresarial.
+          </p>
+        </div>
+
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-handshake"></i>
+          </div>
+          <h3>Parcerias com Empresas</h3>
+          <p>Convênios com empresas locais e regionais que garantem estágio supervisionado e portas abertas para o
+            primeiro emprego.</p>
+        </div>
+
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-brain"></i>
+          </div>
+          <h3>Metodologias Ativas</h3>
+          <p>Aprendizagem baseada em projetos, resolução de problemas reais e protagonismo estudantil em cada
+            disciplina.</p>
+        </div>
+
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-heart"></i>
+          </div>
+          <h3>Formação Integral</h3>
+          <p>Desenvolvimento socioemocional, cultura, esporte e cidadania caminhando ao lado da formação técnica e
+            acadêmica.</p>
+        </div>
+
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-chalkboard-teacher"></i>
+          </div>
+          <h3>Corpo Docente Qualificado</h3>
+          <p>Professores com formação continuada, experiência de mercado e dedicação exclusiva à escola integral.</p>
+        </div>
+
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-rocket-launch"></i>
+          </div>
+          <h3>Projetos de Inovação</h3>
+          <p>Feiras científicas, hackathons, olimpíadas do conhecimento e iniciativas que conectam sala de aula ao mundo
+            real.</p>
+        </div>
+
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-book-open"></i>
+          </div>
+          <h3>Biblioteca e Acervo Digital</h3>
+          <p>Acervo físico e plataformas digitais de aprendizagem disponíveis para pesquisa, estudo e aprofundamento
+            contínuo.</p>
+        </div>
+
+        <div class="diferencial-card reveal">
+          <div class="diferencial-icon">
+            <i class="ph ph-medal"></i>
+          </div>
+          <h3>Resultados Comprovados</h3>
+          <p>Altas taxas de aprovação no ENEM, inserção profissional e ingresso nas melhores universidades do país.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BLOCO 5 — DEPOIMENTOS ====== -->
+  <section class="depoimentos" id="depoimentos">
+    <div class="container">
+      <div class="secao-header reveal">
+        <span class="tag">Histórias de Sucesso</span>
+        <h2 class="secao-titulo">Quem viveu, recomenda</h2>
+        <p class="secao-subtitulo">Depoimentos de quem passou pela EEEP Paulo VI e construiu uma trajetória de
+          conquistas a partir daqui.</p>
+      </div>
+
+      <div class="depoimentos-grid">
+        <!-- Depoimento 1 -->
+        <div class="depoimento-card reveal">
+          <div class="depoimento-aspas">"</div>
+          <blockquote>A Paulo VI mudou completamente minha visão de futuro. Entrei sem saber o que queria e saí com um
+            curso técnico, estágio e uma vaga na universidade federal. Os professores acreditaram em mim antes de eu
+            mesmo acreditar.</blockquote>
+          <div class="depoimento-autor">
+            <div class="depoimento-avatar" aria-hidden="true">LS</div>
+            <div class="depoimento-autor-info">
+              <strong>Lucas Silva</strong>
+              <span>Egresso — Técnico em Informática, 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimento 2 -->
+        <div class="depoimento-card reveal">
+          <div class="depoimento-aspas">"</div>
+          <blockquote>O estágio que fiz durante o curso técnico em enfermagem me deu uma segurança que nenhuma sala de
+            aula conseguiria sozinha. Hoje trabalho no hospital onde estagiei e estou cursando a graduação em paralelo.
+          </blockquote>
+          <div class="depoimento-autor">
+            <div class="depoimento-avatar" aria-hidden="true">AM</div>
+            <div class="depoimento-autor-info">
+              <strong>Ana Beatriz Moreira</strong>
+              <span>Egressa — Técnica em Enfermagem, 2022</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimento 3 -->
+        <div class="depoimento-card reveal">
+          <div class="depoimento-aspas">"</div>
+          <blockquote>Como mãe, vi meu filho se transformar. A escola integral deu estrutura, disciplina e oportunidades
+            que não teríamos de outra forma. Ele se formou técnico em administração e já está trabalhando na área antes
+            mesmo de concluir a faculdade.</blockquote>
+          <div class="depoimento-autor">
+            <div class="depoimento-avatar" aria-hidden="true">RF</div>
+            <div class="depoimento-autor-info">
+              <strong>Regina Ferreira</strong>
+              <span>Mãe de aluno — Turma 2021</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BLOCO 6 — CTA ====== -->
+  <section class="cta-secao" id="cta">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <span class="tag tag-laranja">Matrículas Abertas</span>
+        <h2 class="secao-titulo">Garanta sua vaga na EEEP Paulo VI</h2>
+        <p>As inscrições para o próximo ano letivo estão abertas. Ensino médio integrado à formação técnica, totalmente
+          gratuito, em tempo integral. Seu futuro profissional começa aqui.</p>
+        <div class="cta-botoes">
+          <a href="#" class="btn btn-laranja">
+            <i class="ph ph-pencil-line"></i>
+            Fazer Pré-Matrícula
+          </a>
+          <a href="#contato" class="btn btn-outline-verde">
+            <i class="ph ph-whatsapp-logo"></i>
+            Fale Conosco
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BLOCO 7 — FOOTER ====== -->
+  <footer class="footer" id="contato" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon" aria-hidden="true">PVI</div>
+            <div class="logo-text">
+              <strong>EEEP Paulo VI</strong>
+              <small>Educação Profissional — Ceará</small>
+            </div>
+          </div>
+          <p>Formando jovens protagonistas através do ensino médio integrado à educação profissional, com qualidade,
+            inovação e compromisso social.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/eeeppaulovi/" target="_blank" rel="noopener" aria-label="Instagram da EEEP Paulo VI"><i class="ph ph-instagram-logo"></i></a>
+            <a href="https://whatsapp.com/channel/0029VbBnXIw2Jl8Mr5ucxn2s" target="_blank" rel="noopener" aria-label="WhatsApp da EEEP Paulo VI"><i class="ph ph-whatsapp-logo"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#escola">A Escola</a></li>
+            <li><a href="#cursos">Cursos</a></li>
+            <li><a href="#diferenciais">Diferenciais</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Cursos</h4>
+          <ul>
+            <li><a href="#cursos">📊 Administração</a></li>
+            <li><a href="#cursos">⛑ Enfermagem</a></li>
+            <li><a href="#cursos">🛎 Hospedagem</a></li>
+            <li><a href="#cursos">💻 Redes de Computadores</a></li>
+            <li><a href="#cursos">🚧 Segurança do Trabalho</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul class="footer-contato">
+            <li>
+              <i class="ph ph-map-pin"></i>
+              <span>Rua Jorge Dummar, 1841 — Jardim América<br>Fortaleza — CE, 60410-426</span>
+            </li>
+            <li>
+              <i class="ph ph-phone"></i>
+              <span>(85) 3101-7823</span>
+            </li>
+            <li>
+              <i class="ph ph-clock"></i>
+              <span>Seg a Sex — 7:10h às 16:40h</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 EEEP Paulo VI. Todos os direitos reservados. Governo do Estado do Ceará — SEDUC.</span>
+        <span>
+          <a href="#">Política de Privacidade</a> &middot;
+          <a href="#">Acessibilidade</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CTA Fixo Mobile -->
+  <div class="cta-fixo-mobile" aria-hidden="true">
+    <a href="#cta" class="btn btn-primario">
+      <i class="ph ph-pencil-line"></i>
+      Inscreva-se Agora
+    </a>
+  </div>
+
+  <!-- ====== JAVASCRIPT ====== -->
+  <script>
+    /* --- Header scroll shadow --- */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* --- Mobile menu toggle --- */
+    const menuToggle = document.getElementById('menuToggle');
+    const navMobile = document.getElementById('navMobile');
+    const mobileLinks = navMobile.querySelectorAll('a');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navMobile.classList.toggle('open');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMobile.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* --- Scroll reveal (IntersectionObserver) --- */
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+
+    /* --- Smooth scroll for anchors (fallback) --- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const offsetTop = target.offsetTop - 72;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* --- CTA fixo mobile: esconde no topo --- */
+    const ctaFixo = document.querySelector('.cta-fixo-mobile');
+    if (ctaFixo) {
+      window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 768) {
+          ctaFixo.style.transform = window.scrollY > 400 ? 'translateY(0)' : 'translateY(100%)';
+        }
+      }, { passive: true });
+      ctaFixo.style.transition = 'transform .3s ease';
+      ctaFixo.style.transform = 'translateY(100%)';
+    }
+
+    /* --- Lazy loading nativo (fallback attr) --- */
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      img.setAttribute('loading', 'lazy');
+      img.src = img.dataset.src;
+    });
+  </script>
+</body>
+
+</html>
